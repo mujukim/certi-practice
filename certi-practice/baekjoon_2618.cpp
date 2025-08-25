@@ -43,15 +43,20 @@ void distance()
 		car2dist = abs(CarX[1] - AccdentX[a]) + abs(CarY[1] - AccdentY[a]);
 		if (car1dist > car2dist)
 		{
+			CarX[1] = AccdentX[a];
+			CarY[1] = AccdentY[a];
 			totaldist += car2dist;
 			result[a] = 2;
 		}
 		else
 		{
+			CarX[0] = AccdentX[a];
+			CarY[0] = AccdentY[a];
 			totaldist += car1dist;
 			result[a] = 1;
 		}
 	}
-	
 }
+
+
 
