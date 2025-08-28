@@ -4,59 +4,69 @@
 #include <iostream>
 int n = 0, accidentN = 0;
 int CarX[2] = { 1,1 }, CarY[2] = { 1,1 };
-int AccdentX[1000] = { 0, }, AccdentY[1000] = { 0, };
+int PointX[1002] = { 0, }, PointY[1002] = { 0, };
 int totaldist = 0;
-int result[1000] = { 0, };
-
+int result[1001] = { 0, };
+int dp[1001][1001];
 
 void init();
-void distance();
-
+int distance(int car1, int car2);
+void solve();
 int main()
 {
 	init();
-	distance();
-	printf("%d\n", totaldist);
-	for (int i = 0; i < accidentN; i++)
-	{
-		printf("%d\n", result[i]);
-	}
+	printf("%d\n", distance(0, 1));
+	solve();
 }
 
 void init()
 {
+	memset(dp, -1, sizeof(int) * 1001 * 1001);
 	scanf("%d %d", &n, &accidentN);
-	CarX[1] = n;
-	CarY[1] = n;
-	for (int i = 0; i < accidentN; i++)
+	PointX[0] = 1;
+	PointY[0] = 1;
+	PointX[1] = n;
+	PointY[1] = n;
+	for (int i = 2; i < accidentN + 2; i++)
 	{
-		scanf("%d %d", &AccdentX[i], &AccdentY[i]);
+		scanf("%d %d", &PointX[i], &PointY[i]);
 	}
 }
 
-void distance()
+int max(int a, int b) { return a > b ? a : b; }
+int min(int a, int b) { return a < b ? a : b; }
+int calc_dist(int car1, int car2)
 {
-	int car1dist = 0, car2dist = 0;
-	for (int a = 0; a < accidentN; a++)
+	return abs(PointX[car1] - PointX[car2]) + abs(PointY[car1] - PointY[car2]);
+}
+int distance(int car1, int car2)
+{
+	if (car1 == accidentN + 1 || car2 == accidentN + 1) return 0;
+	if (dp[car1][car2] != -1) return dp[car1][car2];
+	
+	int next = max(car1,car2) + 1;
+	
+	return dp[car1][car2] = min(distance(car1, next) + calc_dist(next, car2), distance(next, car2) + calc_dist(next, car1));
+
+}
+void solve()
+{
+	int car1 = 0, car2 = 1;
+	for (int i = 2; i < accidentN + 2; i++)
 	{
-		car1dist = abs(CarX[0] - AccdentX[a]) + abs(CarY[0] - AccdentY[a]);
-		car2dist = abs(CarX[1] - AccdentX[a]) + abs(CarY[1] - AccdentY[a]);
-		if (car1dist > car2dist)
+		if (dp[i][car2] + calc_dist(i, car1) > dp[car1][i] + calc_dist(i, car2))
 		{
-			CarX[1] = AccdentX[a];
-			CarY[1] = AccdentY[a];
-			totaldist += car2dist;
-			result[a] = 2;
+			printf("2\n");
+			car2 = i;
 		}
 		else
 		{
-			CarX[0] = AccdentX[a];
-			CarY[0] = AccdentY[a];
-			totaldist += car1dist;
-			result[a] = 1;
+			printf("1\n");
+			car1 = i;
 		}
+			
 	}
 }
 
 
-
+// https://lionkingchuchu.tistory.com/21 이거 참고하도록... .
