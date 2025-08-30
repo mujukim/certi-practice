@@ -13,7 +13,7 @@ bool visited[101] = { false, };
 
 int rpg(int STR, int INT)
 {
-	int ret = dp[STR][INT];
+	int &ret = dp[STR][INT];
 	if (ret != -1) return ret;
 
 	ret = 0;
@@ -27,16 +27,16 @@ int rpg(int STR, int INT)
 			if (!visited[i])
 			{
 				visited[i] = true;
+				pnt += a[i].PNT;
+				v.push_back(i);
 			}
-			pnt += a[i].PNT;
-			v.push_back(i);
 		}
 	}
 
 	for (int p = 0; p <= pnt; p++)
 	{
 		int nextSTR = min(1000, STR + p);
-		int nextINT = min(1000, INT - p);
+		int nextINT = min(1000, INT +pnt - p);
 		ret = max(ret, rpg(nextSTR, nextINT));
 	}
 	for (int here : v)
