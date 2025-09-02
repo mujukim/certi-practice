@@ -8,11 +8,12 @@
 
 #include <iostream>
 #include <vector>
+#include <cstring>
 #define INF int(1e9);;
 using namespace std;
 int NumCity;
 int W[16][16];
-int dp[16][16]; // [here][visited]
+int dp[16][1<<16]; // [here][visited] : here에서 시작해서 어디까지 방문했을때 최솟값
 
 void init()
 {
@@ -31,7 +32,7 @@ void init()
 
 int solution(int here, int visited)
 {
-	if (visited == (1 >> NumCity) - 1) // (1 >>NumCity) -1 : N개 도시 모두 방문
+	if (visited == (1 << NumCity) - 1) // (1 << NumCity) -1 : N개 도시 모두 방문
 	{
 		return W[here][0] ? W[here][0] : INF;
 	}
@@ -40,10 +41,11 @@ int solution(int here, int visited)
 	ret = INF;
 	for (int i = 0; i < NumCity; i++)
 	{
-		if (visited & 1 << i) continue;
+		if (visited & (1 << i)) continue;
 		if (W[here][i] == 0) continue;
-		ret = min(ret, solution(i, (visited | (1 << i)) + W[here][i]));
+		ret = min(ret, solution(i, (visited | (1 << i))) + W[here][i]);
 	}
+	return ret;
 }
 
 int main()
