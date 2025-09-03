@@ -17,6 +17,8 @@ int dp[16][1<<16]; // [here][visited] : here에서 시작해서 어디까지 방문했을때 최
 
 void init()
 {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
 	memset(W, 0, sizeof(int) * 16 * 16);
 	memset(dp, -1, sizeof(dp));
 
