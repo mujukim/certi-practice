@@ -18,7 +18,7 @@ int dp[16][1<<16]; // [here][visited] : here에서 시작해서 어디까지 방문했을때 최
 void init()
 {
 	memset(W, 0, sizeof(int) * 16 * 16);
-	memset(dp, -1, sizeof(int) * 16 * 16);
+	memset(dp, -1, sizeof(dp));
 
 	cin >> NumCity;
 	for (int i = 0; i < NumCity; i++)
@@ -45,7 +45,7 @@ int solution(int here, int visited)
 		if (W[here][i] == 0) continue;
 		ret = min(ret, solution(i, (visited | (1 << i))) + W[here][i]);
 	}
-	return ret;
+ 	return ret;
 }
 
 int main()
