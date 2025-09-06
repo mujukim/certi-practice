@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="baekjoon_1315.cpp" />
     <ClCompile Include="baekjoon_2618.cpp" />
+    <ClCompile Include="beakjoon_17070.cpp" />
     <ClCompile Include="beakjoon_2098.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -51,13 +51,19 @@ int calculate()
 	{
 		for (int j = 1; j <= HouseSize; j++)
 		{
+			// 가로일 경우
 			if (check(i + 1, j, 0)) dp[i + 1][j][0] += dp[i][j][0];
 			if (check(i + 1, j + 1, 1)) dp[i + 1][j + 1][1] += dp[i][j][0];
-			if (check(i, j + 1, 2)) dp[i][j + 1][2] += dp[i][j][0];
-
+			// 세로일 경우
+			if (check(i, j + 1, 2)) dp[i][j + 1][2] += dp[i][j][2];
+			if (check(i + 1, j + 1, 2)) dp[i + 1][j + 1][1] += dp[i][j][2];
+			// 대각선일 경우
+			if (check(i + 1, j, 1)) dp[i + 1][j][0] += dp[i][j][1];
+			if (check(i + 1, j, 1)) dp[i][j + 1][2] += dp[i][j][1];
+			if (check(i + 1, j, 1)) dp[i + 1][i + 1][1] += dp[i][j][1];
 		}
 	}
-
+	return dp[HouseSize][HouseSize][0] + dp[HouseSize][HouseSize][1] + dp[HouseSize][HouseSize][2];
 }
 
 int main()
