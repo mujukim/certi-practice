@@ -1,4 +1,4 @@
-// 파이프 옮기기 1
+// 파이프 옮기기 1 
 #include <cstring>
 #include <iostream>
 
@@ -14,7 +14,7 @@ void init()
 	cin.tie(NULL);
 
 	memset(map, 0, sizeof(map));
-	memset(dp, -1, sizeof(dp));
+	memset(dp, 0, sizeof(dp));
 
 	cin >> HouseSize;
 	for (int i = 0; i < HouseSize; i++)
@@ -46,7 +46,7 @@ bool check(int x, int y, int dir)
 }
 int calculate()
 {
-	dp[1][2][0] = 1;
+	dp[2][1][0] = 1;
 	for (int i = 1; i <= HouseSize; i++)
 	{
 		for (int j = 1; j <= HouseSize; j++)
