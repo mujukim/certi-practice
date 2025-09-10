@@ -22,7 +22,7 @@ void combi()
 {
 	for (a = 0; a < 9; a++)
 	{
-		for (b = 0; b < 9; b++)
+		for (b = a + 1; b < 9; b++)
 		{
 			if (a == b) continue;
 
@@ -36,17 +36,15 @@ void combi()
 		}
 	}
 }
-void main()
+int main()
 {
 	init();
 	sort(height, height + 9);
 	combi();
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 9; i++)
 	{
 		if ((i == a) || (i == b)) continue;
-			cout << height[i] << "\n";
+		cout << height[i] << "\n";
 	}
-
-
-	
+	return 0;
 }
