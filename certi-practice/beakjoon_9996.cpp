@@ -1,3 +1,6 @@
+//9996 한국이 그리울 땐 서버에 접속하지
+// substr
+
 #include <iostream>
 
 using namespace std;
@@ -6,6 +9,8 @@ string pattern;
 string input[100];
 bool check(string file)
 {
+	if (file.size() < pattern.size()) return false;
+
 	bool ret = true;
 	for (int i = 0; i < file.size(); i++)
 	{
