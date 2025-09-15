@@ -5,35 +5,17 @@
 
 using namespace std;
 int num;
-string pattern;
-string input[100];
+string pattern, prefix, suffix;
+string input[102]; // 원래 값보다 조금 넉넉하게 두자 
 bool check(string file)
 {
-	if (file.size() < pattern.size()) return false;
-
-	bool ret = true;
-	for (int i = 0; i < file.size(); i++)
-	{
-		if (pattern[i] == 42) break;
-		if (file[i] != pattern[i])
-		{
-			ret = false;
-			break;
-		}
-	}
-
-	if (!ret) return ret;
-
-	for (int i = 1; i < file.size(); i++)
-	{
-		if (pattern[pattern.size() - i] == 42) break;
-		if (file[file.size() - i] != pattern[pattern.size() - i])
-		{
-			ret = false;
-			break;
-		}
-	}
-	return ret;
+	if (file.size() < prefix.size() + suffix.size()) return false;
+	string a = file.substr(0, prefix.size());
+	string b = file.substr(file.size() - suffix.size());
+	if ((prefix == a) && (suffix == b))
+		return true;
+	else
+		return false;
 }
 
 
@@ -45,15 +27,17 @@ int main()
 
 	cin >> num;
 	cin >> pattern;
+	int pos = pattern.find('*');
+	prefix = pattern.substr(0, pos); // 0~pos 전까지 분리
+	suffix = pattern.substr(pos + 1); // pos + 1 부터 끝까지 분리
 	for (int i = 0; i < num; i++)
 	{
 		cin >> input[i];
-	}
-	for (int i = 0; i < num; i++)
-	{
 		if (check(input[i]))
 			cout << "DA\n";
 		else
 			cout << "NE\n";
 	}
+	return 0;
+
 }
