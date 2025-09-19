@@ -2,24 +2,16 @@
 
 using namespace std;
 
-int N, K, numarr[100001];
+int N, K, psum[100001];
 
 int calc()
 {
-	int i = 0, max = -1e9, val = 0;
-	while (true)
+	int ret = -1e9;
+	for (int i = K; i <= N; i++)
 	{
-		if (N - 1 < i + K) break;
-		for (int j = 0; j < K; j++)
-		{
-			val += numarr[i + j];
-		}
-		if (max < val)
-			max = val;
-		i++;
-		val = 0;
+		ret = max(ret, psum[i] - psum[i - K]);
 	}
-	return max;
+	return ret;
 }
 
 int main()
@@ -27,9 +19,12 @@ int main()
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	cin >> N >> K;
-	for (int i = 0; i < N; i++)
+	int input;
+	psum[0] = 0;
+	for (int i = 1; i <= N; i++)
 	{
-		cin >> numarr[i];
+		cin >> input;
+		psum[i] = psum[i - 1] + input;
 	}
 	cout << calc();
 	return 0;
