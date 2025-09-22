@@ -145,6 +145,7 @@
     <ClCompile Include="beakjoon_1159.cpp" />
     <ClCompile Include="beakjoon_11655.cpp" />
     <ClCompile Include="beakjoon_15686.cpp" />
+    <ClCompile Include="beakjoon_1620.cpp" />
     <ClCompile Include="beakjoon_17070.cpp" />
     <ClCompile Include="beakjoon_2098.cpp" />
     <ClCompile Include="beakjoon_2309.cpp" />
