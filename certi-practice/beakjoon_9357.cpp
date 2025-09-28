@@ -7,11 +7,12 @@ int main()
 {
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
-	cin >> tc >> n;
+	cin >> tc;
 	string temp, temp2;
 	for (int i = 0; i < tc; i++)
 	{
 		clothes.clear();
+		cin >> n;
 		for (int j = 0; j < n; j++)
 		{
 			cin >> temp >> temp2;
@@ -22,6 +23,6 @@ int main()
 			ret *= ((long long)c.second + 1); // 안입는 경우 포함하기 위해 + 1
 		}
 		ret--; // 아무것도 안입는 경우 삭제
-		cout << ret;
+		cout << ret << "\n";
 	}
 }
