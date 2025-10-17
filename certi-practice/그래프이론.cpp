@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <queue>
 using namespace std;
 
 // 그래프 표현에는 인접행렬, 인접리스트가 있다
@@ -141,11 +142,64 @@ int main() {
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-            if (a[i][j] == 1 && !b_visited[i][j]) {
+            if (a[i][j] == 1 && !b_visited[i][j]) // 육지고 방문하지 않았다면 새로운 묶음 시작
+            { 
                 ret++; b_dfs(i, j); // 한 묶음 다 돌고나서 탈출함
             }
         }
     }
     cout << ret << '\n';
+    return 0;
+}
+
+// BFS
+// 같은 레이어에 있는 것들 먼저 돈다, 깊이우선탐색, 최단거리알고리즘
+// 수도코드 1
+// BFS(G, u)
+//  u.visited = true
+//  q.push(u)
+//  while(q.size())
+//    u = q.front()
+//    q.pop()
+//    for each v < G.adj[u]
+//      if v.visited == false
+//         v.visited = true
+//         q.push(v)
+
+// 근데 위에서 최단거리를 하려면 v.visited = true를 v.visited = u.visited + 1 로 변경
+// 그러면 visited는 처음시작부터 해당 정점까지 오는데 걸린 시간이 나옴
+
+vector<int> adj[100];
+int visited[100];
+int nodeList[] = { 10, 12, 14, 16, 18, 20, 22, 24 };
+void bfs(int here) {
+    queue<int> q;
+    visited[here] = 1;
+    q.push(here);
+    while (q.size()) {
+        int here = q.front(); q.pop();
+        for (int there : adj[here]) {
+            if (visited[there]) continue;
+            visited[there] = visited[here] + 1;
+            q.push(there);
+        }
+    }
+}
+int main() {
+    adj[10].push_back(12);
+    adj[10].push_back(14);
+    adj[10].push_back(16);
+
+    adj[12].push_back(18);
+    adj[12].push_back(20);
+
+
+    adj[20].push_back(22);
+    adj[20].push_back(24);
+    bfs(10);
+    for (int i : nodeList) {
+        cout << i << " : " << visited[i] << '\n';
+    }
+    cout << "10번으로부터 24번까지 최단거리는 : " << visited[24] - 1 << '\n';
     return 0;
 }
