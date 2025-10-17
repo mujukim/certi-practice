@@ -105,3 +105,47 @@ void go(int y, int x) {
     }
     return;
 }
+
+//DFS
+// 정점 u의 visited를 참으로 바꾸고 u와 연결된 v들을 방문한다 
+//DFS(u, adj)
+// u.visited = true
+//  for each v ∈ adj[u]
+//    if v.visited == false
+//      DFS(v, adj)
+
+// 컴포넌트 찾기 
+// 컴포넌트 : 맵상에서 연결된 묶음들 라벨 붙이기 같은거. 
+// Q. 종화는 방구쟁이야
+
+int dx[4] = { -1, 0, 1, 0 };
+int dx[4] = { 0, -1, 0, 1 };
+int m, n, k, y, x, ret, ny, nx, t;
+int b[104][104];
+bool b_visited[104][104];
+void b_dfs(int y, int x)
+{
+    b_visited[y][x] = 1;
+    for (int i = 0; i < 4; i++) {
+        ny = y + dy[i];
+        nx = x + dx[i];
+        if (ny < 0 || nx < 0 || ny >= n || nx >= m) continue;
+        if (b[ny][nx] == 1 && !b_visited[ny][nx]) {
+            b_dfs(ny, nx);
+        }
+    }
+    return;
+
+}
+int main() {
+
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (a[i][j] == 1 && !b_visited[i][j]) {
+                ret++; b_dfs(i, j); // 한 묶음 다 돌고나서 탈출함
+            }
+        }
+    }
+    cout << ret << '\n';
+    return 0;
+}
