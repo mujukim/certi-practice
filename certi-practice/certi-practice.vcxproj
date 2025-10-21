@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="2178_미로탐색.cpp" />
+    <ClCompile Include="241213_Certi.cpp" />
     <ClCompile Include="baekjoon_1315.cpp" />
     <ClCompile Include="baekjoon_2618.cpp" />
     <ClCompile Include="beakjoon_10988.cpp" />
