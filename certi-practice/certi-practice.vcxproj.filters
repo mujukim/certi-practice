@@ -90,5 +90,11 @@
     <ClCompile Include="beakjoon_2828.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="DFS_templete.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="BFS_templete.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
