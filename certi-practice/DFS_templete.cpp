@@ -26,7 +26,7 @@ void dfs(int r, int c)
 	}
 }
 
-int mais()
+int main()
 {
 	cin >> N >> M;
 	for (int i = 0; i < N; i++)

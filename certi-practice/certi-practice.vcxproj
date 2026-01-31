@@ -163,6 +163,7 @@
     <ClCompile Include="beakjoon_3986.cpp" />
     <ClCompile Include="beakjoon_9357.cpp" />
     <ClCompile Include="beakjoon_9996.cpp" />
+    <ClCompile Include="BFS_BreakWall.cpp" />
     <ClCompile Include="BFS_templete.cpp" />
     <ClCompile Include="DFS_templete.cpp" />
     <ClCompile Include="그래프이론.cpp" />
